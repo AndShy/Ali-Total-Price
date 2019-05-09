@@ -4,7 +4,7 @@
 // @description  Show Total Price on Aliexpress
 // @version      1.0
 // @namespace    https://github.com/AndShy
-// @homepageURL	 https://github.com/AndShy/Ali-Total-Price
+// @homepageURL  https://github.com/AndShy/Ali-Total-Price
 // @downloadURL  https://github.com/AndShy/Ali-Total-Price/Ali_Total_Price.user.js
 // @match        *://*.aliexpress.com/item/*
 // @compatible   chrome
@@ -13,7 +13,7 @@
 
 (function() {
     'use strict';
-    var productShippingPrice, productInfo, topPanel, skuList, quantInp, totPrice, pricecount, parelm, quantnode = null;
+    var productShippingPrice, productInfo, topPanel, skuList, quantInp, totPrice;
     var observer = new MutationObserver(changePrice);
     var config1 = { attributes: true, attributeFilter: ['value'], childList: false, subtree: false};
     var config2 = { attributes: true, childList: false, subtree: true, characterData: true};
@@ -94,8 +94,6 @@
     				else {
     						return tmp;
     					}
-    				
-    				
     			}
 
     		}*/
@@ -106,8 +104,12 @@
 
     function getCurrency() {
     	//console.log(document.querySelector("span.currency"));
-    	return document.querySelector("span.currency").textContent;
-    	//return 'USD';
+      if (document.querySelector("span.currency").textContent) {
+        return document.querySelector("span.currency").textContent;
+      }
+      else {
+        return 'USD';
+      };
     }
 
     function getShipping() {
