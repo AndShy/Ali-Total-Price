@@ -1,2 +1,6 @@
-# Ali-Total-Price
-userscript for showing Aliexpress Total Price 
+## Ali Total Price
+userscript for showing Aliexpress Total Price
+
+
+### Initial Release 
+- may contain bugs !!!
