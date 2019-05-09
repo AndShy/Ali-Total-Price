@@ -5,7 +5,7 @@
 // @version      1.2
 // @namespace    https://github.com/AndShy
 // @homepageURL  https://github.com/AndShy/Ali-Total-Price
-// @downloadURL  https://github.com/AndShy/Ali-Total-Price/Ali_Total_Price.user.js
+// @downloadURL  https://github.com/AndShy/Ali-Total-Price/raw/master/Ali_Total_Price.user.js
 // @match        *://*.aliexpress.com/item/*
 // @compatible   chrome
 // @grant        none
