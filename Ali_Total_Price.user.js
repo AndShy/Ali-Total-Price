@@ -2,7 +2,7 @@
 // @author       AndShy
 // @name         Ali Total Price
 // @description  Show Total Price on Aliexpress
-// @version      1.0
+// @version      1.1
 // @namespace    https://github.com/AndShy
 // @homepageURL  https://github.com/AndShy/Ali-Total-Price
 // @downloadURL  https://github.com/AndShy/Ali-Total-Price/Ali_Total_Price.user.js
