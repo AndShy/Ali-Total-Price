@@ -113,7 +113,7 @@
     function getShipping() {
     	var shippingCost = document.querySelector('span.product-shipping-price');
     	if (shippingCost.textContent.match(/^.*?\d+(\.|,)?\d{0,5}.*?$/m)) {
-    		console.log(shippingCost.textContent.replace(/^.*?(\d+)(\.|,)?(\d{0,5}).*?$/m,'$1.$3'));
+    		//console.log(shippingCost.textContent.replace(/^.*?(\d+)(\.|,)?(\d{0,5}).*?$/m,'$1.$3'));
     		return shippingCost.textContent.replace(/^.*?(\d+)(\.|,)?(\d{0,5}).*?$/m,'$1.$3');
     	}
     	else {
@@ -136,7 +136,7 @@
   		var price = getPrice();
   		if (price) {
   			ttl.textContent = new Intl.NumberFormat('us-US', { style: 'currency', currency: (getCurrency()) }).format(quantInp.value * price + +getShipping());
-  			console.log(ttl.textContent);
+  			//console.log(ttl.textContent);
   		}
   		else {
   			ttl.textContent = '---';
