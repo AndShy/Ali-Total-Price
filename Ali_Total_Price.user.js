@@ -2,7 +2,7 @@
 // @author       AndShy
 // @name         Ali Total Price
 // @description  Show Total Price on Aliexpress for both new and old site versions
-// @version      1.3
+// @version      1.4
 // @namespace    https://github.com/AndShy
 // @homepageURL  https://github.com/AndShy/Ali-Total-Price
 // @downloadURL  https://github.com/AndShy/Ali-Total-Price/raw/master/Ali_Total_Price.user.js
@@ -48,7 +48,6 @@
           totPrice.innerHTML =
           "<span class='bold' style='font-size:24px'>Total Price : </span>" + "<span class='bold' id='ttlprc' style='font-size:24px; color:red'>---</span>";
           productInfo.insertBefore(totPrice, productInfo.querySelector('div.product-action'));
-          getPrice();
           changePrice();
           if (quantInp) observer.observe(quantInp, config1);
           if (skuList) observer.observe(skuList, config2);

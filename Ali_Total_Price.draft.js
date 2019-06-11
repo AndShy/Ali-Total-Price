@@ -2,7 +2,7 @@
 // @author       AndShy
 // @name         Ali Total Price
 // @description  Show Total Price on Aliexpress for both new and old site versions
-// @version      1.3
+// @version      1.4
 // @namespace    https://github.com/AndShy
 // @homepageURL  https://github.com/AndShy/Ali-Total-Price
 // @downloadURL  https://github.com/AndShy/Ali-Total-Price/raw/master/Ali_Total_Price.draft.js
@@ -57,8 +57,6 @@
           //parelm = shippingEl.parentNode;
           //shippingEl.parrentNode.appendChild(totPrice);
           productInfo.insertBefore(totPrice, productInfo.querySelector('div.product-action'));
-
-          getPrice();
 
           //document.querySelector('span.next-input.next-medium.next-input-group-auto-width >:first-child').addEventListener('input', changePrice, false);
           //document.querySelector('span.next-input-group').addEventListener('mouseup', changePrice, false);
