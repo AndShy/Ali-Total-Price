@@ -2,7 +2,7 @@
 // @author       AndShy
 // @name         Ali Total Price
 // @description  Show Total Price on Aliexpress for both new and old site versions
-// @version      1.4
+// @version      1.5
 // @namespace    https://github.com/AndShy
 // @homepageURL  https://github.com/AndShy/Ali-Total-Price
 // @downloadURL  https://github.com/AndShy/Ali-Total-Price/raw/master/Ali_Total_Price.draft.js
@@ -22,7 +22,7 @@
     //rewrite that block to ESversion 5
     document.addEventListener('readystatechange', event => {
 		if (event.target.readyState === 'complete') {
-    		completeLoading();
+    		setTimeout(completeLoading, 1000);
   		}
 	});
 
@@ -119,9 +119,15 @@
     }
 
     function getCurrency() {
-    	//console.log(document.querySelector("span.currency"));
-      if (document.querySelector("span.currency").textContent) {
-        return document.querySelector("span.currency").textContent;
+      var curr_tmp = document.querySelector('span.currency');
+      //console.log(document.querySelector("span.currency"));
+      if (curr_tmp != null) {
+        if (curr_tmp.textContent != null) {
+          return curr_tmp.textContent;
+        }
+        else {
+          return 'USD';
+        }
       }
       else {
         return 'USD';
