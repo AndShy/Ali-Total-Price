@@ -2,7 +2,7 @@
 // @author       AndShy
 // @name         Ali Total Price
 // @description  Show Total Price on Aliexpress for both new and old site versions
-// @version      1.5
+// @version      1.6
 // @namespace    https://github.com/AndShy
 // @homepageURL  https://github.com/AndShy/Ali-Total-Price
 // @downloadURL  https://github.com/AndShy/Ali-Total-Price/raw/master/Ali_Total_Price.user.js
@@ -76,7 +76,6 @@
 
     function getCurrency() {
       var curr_tmp = document.querySelector('span.currency');
-      //console.log(document.querySelector("span.currency"));
       if (curr_tmp != null) {
         if (curr_tmp.textContent != null) {
           return curr_tmp.textContent;
@@ -91,7 +90,7 @@
     }
 
     function getShipping() {
-      var shippingCost = document.querySelector('span.product-shipping-price');
+      var shippingCost = document.querySelector('div.product-shipping-price > span.bold');
       var tmp;
       if (shippingCost != null){
         if (shippingCost.textContent.match(/^.*?\d+(\.|,)?\d*.*?$/)) {
