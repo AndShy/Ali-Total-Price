@@ -2,7 +2,7 @@
 // @author       AndShy
 // @name         Ali Total Price
 // @description  Show Total Price on Aliexpress for both new and old site versions
-// @version      1.6
+// @version      1.7
 // @namespace    https://github.com/AndShy
 // @homepageURL  https://github.com/AndShy/Ali-Total-Price
 // @downloadURL  https://github.com/AndShy/Ali-Total-Price/raw/master/Ali_Total_Price.draft.js
@@ -78,20 +78,18 @@
 
 
     function getPrice() {
-    	    var priceEl = document.querySelector('span.product-price-value');
+          var priceEl = document.querySelector('span.product-price-value');
+          var cur_re = /\D*(\d+|\d.*?\d)(?:\D+(\d{2}))?\D*$/;
           var tmp;
-    	if (priceEl){
-    		//if (priceEl.textContent.match(/^.*?\d+.?\d{0,5} \- \d+.?\d{0,5}.*?$/m)) {
+      if (priceEl){
         if (priceEl.textContent.match(/^.*?\-.*?$/m)) {
-    			return;
-    		}
-    		else {
-          tmp = priceEl.textContent.replace(/\s/g, '');
-          tmp = tmp.replace(/\s/g, '');
-          return tmp.replace(/^.*?(\d+)(\.|,)?(\d*).*?$/, '$1.$3');
-    			//return priceEl.textContent.replace(/^.*?(\d+)(\.|,)?(\d{0,5}).*?$/m,'$1.$3');
-
-    		}
+          return;
+        }
+        else {
+          tmp = cur_re.exec(priceEl.textContent);
+          //console.log(tmp[1].replace(/\D/g,'')+'.'+(tmp[2]?tmp[2]:'00'))
+          return (tmp[1].replace(/\D/g,'')+'.'+(tmp[2]?tmp[2]:'00'));
+        }
     		/*if (priceEl.textContent.match(/^.{1,3} .?\d+(\.|\,)?\d*? \- \d+(\.|\,)?\d*?$/m)) {
     			//console.log(priceEl.textContent.match(/^.{1,3} .?\d+(\.|\,)?\d*? \- \d+(\.|\,)?\d*?$/m));
     			return;
@@ -135,24 +133,21 @@
     }
 
     function getShipping() {
-    	//var shippingCost = document.querySelector('span.product-shipping-price');
       var shippingCost = document.querySelector('div.product-shipping-price > span.bold');
+      var cur_re = /\D*(\d+|\d.*?\d)(?:\D+(\d{2}))?\D*$/;
       var tmp;
-    	//if (shippingCost.textContent.match(/^.*?\d+(\.|,)?\d{0,5}.*?$/m)) {
       if (shippingCost != null){
-        if (shippingCost.textContent.match(/^.*?\d+(\.|,)?\d*.*?$/)) {
-    		  //console.log(shippingCost.textContent.replace(/^.*?(\d+)(\.|,)?(\d{0,5}).*?$/m,'$1.$3'));
-          tmp = shippingCost.textContent.replace(/\s/g,'');
-    		  return tmp.replace(/^.*?(\d+)(\.|,)?(\d*).*?$/,'$1.$3');
+        if (shippingCost.textContent.match(/^\D*\d.*?\d\D*$/)) {
+          tmp = cur_re.exec(shippingCost.textContent);
+          return (tmp[1].replace(/\D/g,'')+'.'+(tmp[2]?tmp[2]:'00'))
         }
         else {
-    		  return '0';
+          return '0';
         }
       }
       else {
         return '0';
       }
-
     }
 
     function changePrice() {

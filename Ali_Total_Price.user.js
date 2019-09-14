@@ -2,7 +2,7 @@
 // @author       AndShy
 // @name         Ali Total Price
 // @description  Show Total Price on Aliexpress for both new and old site versions
-// @version      1.6
+// @version      1.7
 // @namespace    https://github.com/AndShy
 // @homepageURL  https://github.com/AndShy/Ali-Total-Price
 // @downloadURL  https://github.com/AndShy/Ali-Total-Price/raw/master/Ali_Total_Price.user.js
@@ -59,16 +59,16 @@
 
 
     function getPrice() {
-    	    var priceEl = document.querySelector('span.product-price-value');
+          var priceEl = document.querySelector('span.product-price-value');
+          var cur_re = /\D*(\d+|\d.*?\d)(?:\D+(\d{2}))?\D*$/;
           var tmp;
-    	if (priceEl){
+      if (priceEl){
         if (priceEl.textContent.match(/^.*?\-.*?$/m)) {
-    			return;
-    		}
-    		else {
-          tmp = priceEl.textContent.replace(/\s/g, '');
-          tmp = tmp.replace(/\s/g, '');
-          return tmp.replace(/^.*?(\d+)(\.|,)?(\d*).*?$/, '$1.$3');
+          return;
+        }
+        else {
+          tmp = cur_re.exec(priceEl.textContent);
+          return (tmp[1].replace(/\D/g,'')+'.'+(tmp[2]?tmp[2]:'00'));
     		}
     	}
     return;
@@ -91,11 +91,12 @@
 
     function getShipping() {
       var shippingCost = document.querySelector('div.product-shipping-price > span.bold');
+      var cur_re = /\D*(\d+|\d.*?\d)(?:\D+(\d{2}))?\D*$/;
       var tmp;
       if (shippingCost != null){
-        if (shippingCost.textContent.match(/^.*?\d+(\.|,)?\d*.*?$/)) {
-          tmp = shippingCost.textContent.replace(/\s/g,'');
-          return tmp.replace(/^.*?(\d+)(\.|,)?(\d*).*?$/,'$1.$3');
+        if (shippingCost.textContent.match(/^\D*\d.*?\d\D*$/)) {
+          tmp = cur_re.exec(shippingCost.textContent);
+          return (tmp[1].replace(/\D/g,'')+'.'+(tmp[2]?tmp[2]:'00'))
         }
         else {
           return '0';
