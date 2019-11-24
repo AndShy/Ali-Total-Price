@@ -2,7 +2,7 @@
 // @author       AndShy
 // @name         Ali Total Price
 // @description  Show Total Price on Aliexpress for both new and old site versions
-// @version      1.9
+// @version      1.10
 // @license      GPL-3.0
 // @namespace    https://github.com/AndShy
 // @homepageURL  https://github.com/AndShy/Ali-Total-Price
@@ -46,7 +46,10 @@
         if (productInfo){
           totPrice = document.createElement('div');
           totPrice.innerHTML =
-          "<span class='bold' style='font-size:24px'>Total Price : </span>" + "<span class='bold' id='ttlprc' style='font-size:24px; color:red'>---</span>";
+          "<span class='bold' style='font-size:14px; background-color:#f0f0f0'>One piece price:&nbsp;&nbsp;</span>" + 
+          "<span class='bold' id='pcs_prc' style='font-size:14px; color:blue; background-color:#f0f0f0'>---</span><br>" +
+          "<span class='bold' style='font-size:24px'>Total Price:&nbsp;&nbsp;</span>" + 
+          "<span class='bold' id='ttlprc' style='font-size:24px; color:red'>---</span>"; 
           productInfo.insertBefore(totPrice, productInfo.querySelector('div.product-action'));
           changePrice();
           if (quantInp) observer.observe(quantInp, config1);
@@ -109,12 +112,17 @@
 
     function changePrice() {
   		var ttl = document.getElementById('ttlprc');
+      var pcs_prc = document.getElementById('pcs_prc');
   		var price = getPrice();
+      var curr = getCurrency();
   		if (price) {
-  			ttl.textContent = new Intl.NumberFormat('us-US', { style: 'currency', currency: (getCurrency()) }).format(+quantInp.value * +price + +getShipping());
+        var tp = +quantInp.value * +price + +getShipping();
+  			ttl.textContent = new Intl.NumberFormat('us-US', { style: 'currency', currency: (curr) }).format(tp);
+        pcs_prc.textContent ='~' + new Intl.NumberFormat('us-US', { style: 'currency', currency: (curr)}).format(tp/+quantInp.value);
   		}
   		else {
   			ttl.textContent = '---';
+        pcs_prc.textContent = '---';
   		}
 	}
 
