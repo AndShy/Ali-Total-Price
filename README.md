@@ -2,10 +2,4 @@
 userscript for showing Aliexpress Total Price
 ##### Written and tested in chrome-like browser with tampermonkey. Should work with other browsers 
 
-<img src="images/20190913_1.jpg" width="500">
-<br/>
-<img src="images/20190913_2.jpg" width="500">
-<br/>
-<img src="images/20190913_3.jpg" width="500">
-<br/>
-<img src="images/20190914_4.jpg" width="500">
+<img src="images/20191124_22-57-22.jpg" width="500">
