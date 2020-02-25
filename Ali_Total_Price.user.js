@@ -2,15 +2,13 @@
 // @author       AndShy
 // @name         Ali Total Price
 // @description  Shows Total Price on Aliexpress for both new and old site versions
-// @version      2.0
+// @version      2.1hf
 // @license      GPL-3.0
 // @namespace    https://github.com/AndShy
 // @homepageURL  https://github.com/AndShy/Ali-Total-Price
 // @downloadURL  https://github.com/AndShy/Ali-Total-Price/raw/master/Ali_Total_Price.user.js
-// @match        *://*.aliexpress.com/item/*
-// @match        *://*.aliexpress.com/store/product*
-// @match        *://aliexpress.ru/item/*
-// @match        *://aliexpress.ru/store/product*
+// @match        *://*.aliexpress.com/*
+// @match        *://aliexpress.ru/*
 // @grant        none
 // ==/UserScript==
 
