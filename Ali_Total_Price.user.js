@@ -1,7 +1,7 @@
 // ==UserScript==
 // @author       AndShy
 // @name         Ali Total Price
-// @description  Shows Total Price on Aliexpress for both new and old site versions
+// @description  Shows Total Price on Aliexpress
 // @version      2.1hf
 // @license      GPL-3.0
 // @namespace    https://github.com/AndShy
