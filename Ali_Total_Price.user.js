@@ -2,7 +2,7 @@
 // @author       AndShy
 // @name         Ali Total Price
 // @description  Shows Total Price on Aliexpress
-// @version      2.1hf
+// @version      2.2
 // @license      GPL-3.0
 // @namespace    https://github.com/AndShy
 // @homepageURL  https://github.com/AndShy/Ali-Total-Price
@@ -41,12 +41,15 @@
     	const searchObserverConf = {childList: true, subtree: true};
     	var searchObserver = new MutationObserver(LazyLoadOnSearch);
     	var timer1 = setInterval(function() {
-    	currency = document.querySelector('a#switcher-info > span.currency');
-    	if (currency) {
-    		clearInterval(timer1);
-    		var listItems = document.querySelector('ul.list-items');
-    		if (listItems) {searchObserver.observe (listItems,searchObserverConf)};
-    		LazyLoadOnSearch();
+			currency = document.querySelector('a#switcher-info > span.currency');
+			if (currency) {
+				if (currency.innerText.length == 3) {
+					currency = currency.innerText;
+					clearInterval(timer1);
+					var listItems = document.querySelector('ul.list-items');
+					if (listItems) {searchObserver.observe (listItems,searchObserverConf)};
+					LazyLoadOnSearch();
+				}
     		}
     	},100)
     }
@@ -61,12 +64,15 @@
     	var timer1 = setInterval(function() {
     		currency = document.querySelector('a#switcher-info > span.currency');
     		if (currency) {
-    			clearInterval(timer1);
-    			itemInsertHTML();
-				if (quantInpEl) itemObserver.observe(quantInpEl, itemObserverConf1);
-				if (skuListEl) itemObserver.observe(skuListEl, itemObserverConf2);
-				if (shippingEl) itemObserver.observe(shippingEl, itemObserverConf2);
-				refreshItemValues();
+				if (currency.innerText.length == 3) {
+					currency = currency.innerText;
+					clearInterval(timer1);
+					itemInsertHTML();
+					if (quantInpEl) itemObserver.observe(quantInpEl, itemObserverConf1);
+					if (skuListEl) itemObserver.observe(skuListEl, itemObserverConf2);
+					if (shippingEl) itemObserver.observe(shippingEl, itemObserverConf2);
+					refreshItemValues();
+				}
     		}
 
     	},100)
@@ -120,7 +126,7 @@
     		else {
     			myPcsPrcEl.innerText = '---';
     			myTtlPrcEl.innerText = '---';
-    			myLotPcsPrcEl.innerText = '---';
+    			if (myLotPcsPrcEl) myLotPcsPrcEl.innerText = '---';
     		}
     	}
     }
@@ -196,7 +202,7 @@
 	}
 
     function calcTotalPrice(value, decDigits) {
-    	return new Intl.NumberFormat('us-US', {style: 'currency', currency: (currency.innerText), maximumFractionDigits: decDigits}).format(value);
+    	return new Intl.NumberFormat('us-US', {style: 'currency', currency: currency, maximumFractionDigits: decDigits}).format(value);
     }
 
 })();
