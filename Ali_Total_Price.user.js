@@ -2,7 +2,7 @@
 // @author       AndShy
 // @name         Ali Total Price
 // @description  Shows Total Price on Aliexpress
-// @version      2.2
+// @version      2.3
 // @license      GPL-3.0
 // @namespace    https://github.com/AndShy
 // @homepageURL  https://github.com/AndShy/Ali-Total-Price
@@ -16,7 +16,7 @@
     'use strict';
     var pathRegExp1 = /\/item\//i
     var pathRegExp2 = /\/product\//i
-    var pathRegExp3 = /\/wholesale\//i;
+    var pathRegExp3 = /\/w\//i;
     var pathRegExp4 = /\/af\//i;
     var pN = window.location.pathname;
     var currency;
