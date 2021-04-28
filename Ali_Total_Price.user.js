@@ -2,7 +2,7 @@
 // @author       AndShy
 // @name         Ali Total Price
 // @description  Shows Total Price on Aliexpress
-// @version      2.6
+// @version      2.7
 // @license      GPL-3.0
 // @namespace    https://github.com/AndShy
 // @homepageURL  https://github.com/AndShy/Ali-Total-Price
@@ -36,7 +36,6 @@
 
         default:
             return;
-            break;
     }
 
     function searchPageObserver() {
@@ -113,8 +112,11 @@
         var quantInpEl = document.querySelector('span.next-input.next-medium.next-input-group-auto-width > input');
         var itemPriceEl = document.querySelector('span.product-price-value');
         
-        if (!itemPriceEl) {itemPriceEl = document.querySelector('div > span.oyuLA')}
-
+		if (!itemPriceEl) {
+            itemPriceEl = document.querySelector('div > span.oyuLA');
+            if (!itemPriceEl) {itemPriceEl = document.querySelector('span.uniform-banner-box-price')}
+        }
+		
         if (itemPriceEl && shCostEl && quantInpEl) {
             if (!itemPriceEl.innerText.includes(' - ')) {
                 var itemPriceValue, shCostValue, tmp;
