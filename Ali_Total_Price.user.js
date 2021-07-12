@@ -2,7 +2,7 @@
 // @author       AndShy
 // @name         Ali Total Price
 // @description  Shows Total Price on Aliexpress
-// @version      2.7
+// @version      2.8
 // @license      GPL-3.0
 // @namespace    https://github.com/AndShy
 // @homepageURL  https://github.com/AndShy/Ali-Total-Price
@@ -112,12 +112,12 @@
         var quantInpEl = document.querySelector('span.next-input.next-medium.next-input-group-auto-width > input');
         var itemPriceEl = document.querySelector('span.product-price-value');
         
-		if (!itemPriceEl) {
+        if (!itemPriceEl) {
             itemPriceEl = document.querySelector('div > span.oyuLA');
             if (!itemPriceEl) {itemPriceEl = document.querySelector('span.uniform-banner-box-price')}
         }
-		
-        if (itemPriceEl && shCostEl && quantInpEl) {
+
+        if (!!itemPriceEl && !!shCostEl && !!quantInpEl) {
             if (!itemPriceEl.innerText.includes(' - ')) {
                 var itemPriceValue, shCostValue, tmp;
                 itemPriceValue = strToCurrency(itemPriceEl.innerText);
@@ -134,6 +134,11 @@
                 myTtlPrcEl.innerText = '---';
                 if (myLotPcsPrcEl) myLotPcsPrcEl.innerText = '---';
             }
+        }
+        else {
+            myPcsPrcEl.innerText = '---';
+            myTtlPrcEl.innerText = '---';
+            if (myLotPcsPrcEl) myLotPcsPrcEl.innerText = '---';
         }
     }
 
