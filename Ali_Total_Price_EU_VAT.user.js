@@ -7,10 +7,12 @@
 // @namespace    https://github.com/AndShy
 // @match        *://*.aliexpress.com/*
 // @match        *://aliexpress.ru/*
-// @grant       GM.setValue
-// @grant       GM.getValue
-// @grant       GM.listValues
-// @grant       GM.deleteValue
+// @homepageURL  https://github.com/AndShy/Ali-Total-Price
+// @downloadURL  https://github.com/AndShy/Ali-Total-Price/raw/master/Ali_Total_Price_EU_VAT.user.js
+// @grant        GM.setValue
+// @grant        GM.getValue
+// @grant        GM.listValues
+// @grant        GM.deleteValue
 // ==/UserScript==
 
 (function() {
