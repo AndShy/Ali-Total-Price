@@ -2,7 +2,7 @@
 // @author       AndShy
 // @name         Ali Total Price EU VAT
 // @description  Shows Total Price on Aliexpress
-// @version      2.7b
+// @version      2.7.1b
 // @license      GPL-3.0
 // @namespace    https://github.com/AndShy
 // @match        *://*.aliexpress.com/*
@@ -22,6 +22,7 @@
     var pathRegExp5 = /\/wholesale/i;
     var pN = window.location.pathname;
     var currency;
+    const vatThreshold = 150; //with total price greater than 150 eur VAT will be paid on customs
 
 
     switch(true){
@@ -92,7 +93,7 @@
             "<span>One piece/lot price:&nbsp;&nbsp;</span><span id='pcs_prc' style='color:blue;'>---</span></div>" +
             "<div class='bold' style='font-size:24px'><span>Total Price:&nbsp;&nbsp;</span><span id='ttl_prc' style='color:red'>---</span></div>" +
             "<form id='vatF'>" +
-            "<p><span>VAT:</span> <input type='text' maxlength='2' placeholder='%' name='vat' size='3'><span>&nbsp;&nbsp; VAT threshold:&nbsp;</span><input type='text' maxlength='3' name='threshold' size='3'></p>" +
+            "<p><span>VAT:</span> <input type='text' maxlength='2' placeholder='%' name='vat' size='3'>" +
             //"<input type='submit' style='position: absolute; left: -9999px; width: 1px; height: 1px;'/>" +
             "<input type='submit' hidden />" +
             "</form>" +
@@ -101,12 +102,10 @@
             var vatForm = document.getElementById('vatF');
             
             const storage_vat = await GM.getValue('vat', 20);
-            const storage_thresh = await GM.getValue('threshold', 22);
             vatForm.vat.value = storage_vat;
-            vatForm.threshold.value = storage_thresh;
 
             if (vatForm){
-                vatForm.addEventListener('submit', (e)=>{e.preventDefault(); e.target.vat.blur();e.target.threshold.blur();});
+                vatForm.addEventListener('submit', (e)=>{e.preventDefault(); e.target.vat.blur();});
                 vatForm.addEventListener('blur', changeInput, true);
                 vatForm.addEventListener('keypress', (e)=>{if (e.which!=13 && (e.which < 48 || e.which > 57)){e.preventDefault();}});
             }
@@ -146,11 +145,10 @@
                 myPcsPrcEl.innerText = calcTotalPrice(temp_ttlprc/+quantInpEl.value, 2);
 
                 var timer2 = setInterval(function(){
-                    if (!!vatForm.vat.value && !!vatForm.threshold.value) {
+                    if (!!vatForm.vat.value) {
                         var vatValue = vatForm.vat.value;
-                        var vatThreshold = vatForm.threshold.value;
                         clearInterval(timer2); 
-                        if (temp_ttlprc > vatThreshold) { 
+                        if (temp_ttlprc < vatThreshold) { 
                             priceWithVAT.innerText = calcTotalPrice(temp_ttlprc + ((temp_ttlprc/100) * +vatValue));
                         }
                         else {
