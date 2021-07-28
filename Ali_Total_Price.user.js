@@ -2,7 +2,7 @@
 // @author       AndShy
 // @name         Ali Total Price
 // @description  Shows Total Price on Aliexpress
-// @version      2.8
+// @version      2.9
 // @license      GPL-3.0
 // @namespace    https://github.com/AndShy
 // @homepageURL  https://github.com/AndShy/Ali-Total-Price
@@ -204,7 +204,7 @@
     }
 
     function strToCurrency (str) {
-        var currencyRegExp = /\D*(\d+|\d.*?\d)(?:\D+(\d{2}))?\D*$/;
+        var currencyRegExp = /\D*((?:\d*[ \t\.\,]?)*)(?:\.|,)((?:\d){0,3}).*?/;
         var tmp = [];
         if (!str.match(/\d/)) return 0;
         tmp = currencyRegExp.exec(str);
