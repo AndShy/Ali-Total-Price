@@ -61,7 +61,7 @@
         const itemObserverConf3 = {attributes: true, childList: true, subtree: true, characterData: true};
         var skuListEl = document.querySelector('div.product-sku');
         var quantInpEl = document.querySelector('span.next-input.next-medium.next-input-group-auto-width > input');
-        var shippingEl = document.querySelector('div.product-dynamic-shipping > div > div.dynamic-shipping > div > span');
+        var shippingEl = document.querySelector('div.product-dynamic-shipping > div > div.dynamic-shipping');
         var itemObserver = new MutationObserver(refreshItemValues);
         var timer1 = setInterval(function() {
             currency = document.querySelector('a#switcher-info > span.currency');
@@ -104,12 +104,12 @@
         }
     }
 
-    function refreshItemValues() {
+    function refreshItemValues(mutationsList, observer) {
         var myPcsPrcEl = document.getElementById('pcs_prc');
         var myTtlPrcEl = document.getElementById('ttl_prc');
         var myLotPcsPrcEl = document.getElementById('lot_pcs_prc');
         var lotEl = document.querySelector('span.product-price-piece');
-        var shCostEl = document.querySelector('div.product-dynamic-shipping > div > div.dynamic-shipping > div > span > span > strong');
+        var shCostEl = document.querySelector('div.dynamic-shipping-line.dynamic-shipping-titleLayout > span > span > strong');
         var quantInpEl = document.querySelector('span.next-input.next-medium.next-input-group-auto-width > input');
         var itemPriceEl = document.querySelector('span.product-price-value');
         
