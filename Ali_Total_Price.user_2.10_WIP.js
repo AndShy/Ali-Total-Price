@@ -104,7 +104,7 @@
         }
     }
 
-    function refreshItemValues(mutationsList, observer) {
+    function refreshItemValues() {
         var myPcsPrcEl = document.getElementById('pcs_prc');
         var myTtlPrcEl = document.getElementById('ttl_prc');
         var myLotPcsPrcEl = document.getElementById('lot_pcs_prc');
