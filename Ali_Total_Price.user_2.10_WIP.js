@@ -60,7 +60,7 @@
         const itemObserverConf2 = {attributes: true, childList: false, subtree: true, characterData: true};
         const itemObserverConf3 = {attributes: true, childList: true, subtree: true, characterData: true};
         var skuListEl = document.querySelector('div.product-sku');
-        var quantInpEl = document.querySelector('span.next-input.next-medium.product-price-value > input');
+        var quantInpEl = document.querySelector('span.next-input.next-medium.next-input-group-auto-width > input');
         var shippingEl = document.querySelector('div.product-dynamic-shipping > div > div.dynamic-shipping > div > span');
         var itemObserver = new MutationObserver(refreshItemValues);
         var timer1 = setInterval(function() {
