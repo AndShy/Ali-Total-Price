@@ -1,14 +1,13 @@
 // ==UserScript==
-// @author       AndShy
 // @name         Ali Total Price
+// @author       AndShy
 // @description  Shows Total Price on Aliexpress
-// @version      2.9
+// @version      2.11
 // @license      GPL-3.0
 // @namespace    https://github.com/AndShy
 // @homepageURL  https://github.com/AndShy/Ali-Total-Price
 // @downloadURL  https://github.com/AndShy/Ali-Total-Price/raw/master/Ali_Total_Price.user.js
 // @match        *://*.aliexpress.com/*
-// @match        *://aliexpress.ru/*
 // @grant        none
 // ==/UserScript==
 
@@ -58,9 +57,11 @@
     function itemPageObserver() {
         const itemObserverConf1 = {attributes: true, attributeFilter: ['value'], childList: false, subtree: false};
         const itemObserverConf2 = {attributes: true, childList: false, subtree: true, characterData: true};
-        var skuListEl = document.querySelector('div.product-sku');
+        const itemObserverConf3 = {attributes: true, childList: true, subtree: true, characterData: true};
+        var priceEl = document.querySelector('span.uniform-banner-box-price');
+        if (!priceEl) priceEl = document.querySelector('div.product-price');
         var quantInpEl = document.querySelector('span.next-input.next-medium.next-input-group-auto-width > input');
-        var shippingEl = document.querySelector('div.product-shipping');
+        var shippingEl = document.querySelector('div.product-dynamic-shipping > div > div.dynamic-shipping');
         var itemObserver = new MutationObserver(refreshItemValues);
         var timer1 = setInterval(function() {
             currency = document.querySelector('a#switcher-info > span.currency');
@@ -70,8 +71,8 @@
                     clearInterval(timer1);
                     itemInsertHTML();
                     if (quantInpEl) itemObserver.observe(quantInpEl, itemObserverConf1);
-                    if (skuListEl) itemObserver.observe(skuListEl, itemObserverConf2);
-                    if (shippingEl) itemObserver.observe(shippingEl, itemObserverConf2);
+                    if (priceEl) itemObserver.observe(priceEl, itemObserverConf2);
+                    if (shippingEl) itemObserver.observe(shippingEl, itemObserverConf3);
                     refreshItemValues();
                 }
             }
@@ -91,10 +92,10 @@
             "<div class='bold' style='font-size:24px'><span>Total Price:&nbsp;&nbsp;</span><span id='ttl_prc' style='color:red'>---</span></div>";
             productInfo.insertBefore(totPrice, productInfo.querySelector('div.product-action'));
             if (lotEl) {
-                var lot_html =  
+                var lot_html =
                 "<span class='bold' title='price for 1pcs from lot' style='font-size:14px; color:black'>&nbsp;&nbsp;&nbsp;1pcs:&nbsp;" +
                 "<span id='lot_pcs_prc' style='color:green;'>---</span></span>";
-                /*var lot_html = 
+                /*var lot_html =
                     "<table cellspacing='0' cellpadding='0' style='margin-left: 0;border-collapse: collapse;color:black;font-size: 10px;display: inline;' class='bold'>" +
                     "<tbody><tr align='center'><td>lot price</td><td rowspan='3'>&nbsp;=&nbsp;</td><td rowspan='3' id='lot_pcs_prc' style='font-size: 14px;'>test3</td>" +
                     "</tr><tr align='center'><td><tt>——————</tt></td></tr><tr align='center'><td>lot pcs</td></tr></tbody></table>";*/
@@ -108,19 +109,18 @@
         var myTtlPrcEl = document.getElementById('ttl_prc');
         var myLotPcsPrcEl = document.getElementById('lot_pcs_prc');
         var lotEl = document.querySelector('span.product-price-piece');
-        var shCostEl = document.querySelector('div.product-shipping-price > span.bold');
+        var shCostEl = document.querySelector('div.dynamic-shipping-line.dynamic-shipping-titleLayout > span > span > strong');
         var quantInpEl = document.querySelector('span.next-input.next-medium.next-input-group-auto-width > input');
         var itemPriceEl = document.querySelector('span.product-price-value');
-        
+
         if (!itemPriceEl) {
             itemPriceEl = document.querySelector('div > span.oyuLA');
             if (!itemPriceEl) {itemPriceEl = document.querySelector('span.uniform-banner-box-price')}
         }
-
         if (!!itemPriceEl && !!shCostEl && !!quantInpEl) {
             if (!itemPriceEl.innerText.includes(' - ')) {
                 var itemPriceValue, shCostValue, tmp;
-                itemPriceValue = strToCurrency(itemPriceEl.innerText);
+                itemPriceValue = strToCurrency(itemPriceEl.innerText.split(' /')[0]);
                 shCostValue = strToCurrency(shCostEl.innerText);
                 tmp = (+itemPriceValue * +quantInpEl.value) + +shCostValue;
                 myTtlPrcEl.innerText = calcTotalPrice(tmp, 2);
@@ -204,7 +204,7 @@
     }
 
     function strToCurrency (str) {
-        var currencyRegExp = /\D*((?:\d*[ \t\.\,]?)*)(?:\.|,)((?:\d){0,3}).*?/;
+        var currencyRegExp = /^\D*?([\d\s\,\.]*?)(?:[\.\,](\d{2}))?\D*$/;
         var tmp = [];
         if (!str.match(/\d/)) return 0;
         tmp = currencyRegExp.exec(str);
@@ -213,7 +213,7 @@
     }
 
     function calcTotalPrice(value, decDigits) {
-        return new Intl.NumberFormat('us-US', {style: 'currency', currency: currency, maximumFractionDigits: decDigits}).format(value);
+        return new Intl.NumberFormat('us-US', {style: 'currency', currency: currency, minimumFractionDigits: decDigits, maximumFractionDigits: decDigits}).format(value);
     }
 
 })();
