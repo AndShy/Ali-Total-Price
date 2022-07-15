@@ -1,4 +1,6 @@
 ## Ali Total Price
+<a href="https://www.buymeacoffee.com/AndShy" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="29" width="100"></a>
+
 Userscript that shows Aliexpress Total Price
 ##### Currently not working on search pages. 
 ###### Written and tested in chrome-like browser with tampermonkey. Should work with other browsers 
