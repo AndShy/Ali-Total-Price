@@ -2,7 +2,7 @@
 // @name         Ali Total Price
 // @author       AndShy
 // @description  Shows Total Price on Aliexpress
-// @version      2.13
+// @version      2.14
 // @license      GPL-3.0
 // @namespace    https://github.com/AndShy
 // @homepageURL  https://github.com/AndShy/Ali-Total-Price
@@ -41,7 +41,7 @@
         const searchObserverConf = {childList: true, subtree: true};
         var searchObserver = new MutationObserver(LazyLoadOnSearch);
         var timer1 = setInterval(function() {
-            currency = document.querySelector('a#switcher-info > span.currency');
+            currency = document.querySelector('#switcher-info > span.currency');
             if (currency) {
                 if (currency.innerText.length == 3) {
                     currency = currency.innerText;
@@ -64,7 +64,7 @@
         var shippingEl = document.querySelector('div.product-dynamic-shipping > div > div.dynamic-shipping');
         var itemObserver = new MutationObserver(refreshItemValues);
         var timer1 = setInterval(function() {
-            currency = document.querySelector('a#switcher-info > span.currency');
+            currency = document.querySelector('#switcher-info > span.currency');
             if (currency) {
                 if (currency.innerText.length == 3) {
                     currency = currency.innerText;
@@ -207,6 +207,7 @@
         var currencyRegExp = /^\D*?([\d\s\,\.]*?)(?:[\.\,](\d{2}))?\D*$/;
         var tmp = [];
         if (!str.match(/\d/)) return 0;
+        //if (str.match(/[a-zA-Z]{4,}/)) return 0;
         tmp = currencyRegExp.exec(str);
         tmp[1] = tmp[1].replace(/\D+/g,'');
         return (tmp[1] + '.' + (tmp[2]?tmp[2]:'00'));
