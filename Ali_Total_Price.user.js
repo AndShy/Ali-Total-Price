@@ -111,7 +111,7 @@
         var lotEl = document.querySelector('span.product-price-piece');
         var shCostEl = document.querySelector("div.product-dynamic-shipping > div > div > div > span > span > strong")
         var quantInpEl = document.querySelector('span.next-input.next-medium.next-input-group-auto-width > input');
-        var itemPriceEl = document.querySelector('div.product-price-current > span.product-price-value');
+        var itemPriceEl = document.querySelector('div.product-price-current > div');
 
         if (!itemPriceEl) {
             itemPriceEl = document.querySelector('div > span.oyuLA');
