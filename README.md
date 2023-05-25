@@ -2,6 +2,7 @@
 <a href="https://www.buymeacoffee.com/AndShy" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="29" width="100"></a>
 
 Userscript that shows Aliexpress Total Price
+### Who has troubles with script can try this version: https://github.com/AndShy/Ali-Total-Price/issues/14#issuecomment-1537423975
 ##### Currently not working on search pages. 
 ###### Written and tested in chrome-like browser with tampermonkey. Should work with other browsers 
 ##### Русня идёт на хуй вслед за сруской военной лодкой
